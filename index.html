@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <title>Таблица успеваемости</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: center;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+            vertical-align: middle;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .title {
+            text-align: center;
+            font-weight: bold;
+            color: red;
+            font-size: 20px;
+        }
+        .vertical-text {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            white-space: nowrap;
+            padding: 10px;
+        }
+        .bottom-align {
+            vertical-align: bottom;
+        }
+        .chart-container {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+        }
+        @media screen and (max-width: 768px) {
+        .table-container {
+            overflow-x: auto;
+            width: 100%;
+        }
+        
+        table {
+            min-width: 600px; /* Минимальная ширина таблицы */
+        }
+        
+        .chart-container {
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+    }
+    </style>
+</head>
+<body>
+    <div class="table-container">
+            <h2 class="title">Расчёт успеваемости учащихся</h2>
+
+    <table>
+        <tr>
+            <th rowspan="2">#</th>
+            <th rowspan="2">Имя и Фамилия ученика</th>
+            <th colspan="4" class="bottom-align">Баллы успеваемости ученика</th>
+            <th rowspan="2" class="vertical-text">Бонусные баллы</th>
+            <th rowspan="2" class="vertical-text">Среднегодовой балл</th>
+            <th rowspan="2" class="vertical-text">Годовой балл (округл.)</th>
+            <th rowspan="2" class="vertical-text">Максимальный</th>
+            <th rowspan="2" class="vertical-text">Минимальный</th>
+            <th rowspan="2" class="vertical-text">AVG → Max</th>
+            <th rowspan="2" class="vertical-text">AVG → Min</th>
+            <th rowspan="2" class="vertical-text">Годовая оценка</th>
+            <th rowspan="2" class="vertical-text">Добавляем бонусные баллы?</th>
+        </tr>
+        <tr>
+            <th class="vertical-text">1 четверть</th>
+            <th class="vertical-text">2 четверть</th>
+            <th class="vertical-text">3 четверть</th>
+            <th class="vertical-text">4 четверть</th>
+        </tr>
+        <tr>
+            <td>1</td>
+            <td>Абдиев Б.</td>
+            <td>76</td>
+            <td>83</td>
+            <td>76</td>
+            <td>79</td>
+            <td>8</td>
+            <td>78</td>
+            <td>78</td>
+            <td>83</td>
+            <td>76</td>
+            <td>+5</td>
+            <td>-2</td>
+            <td>4</td>
+            <td>Да</td>
+        </tr>
+        <tr>
+            <td>2</td>
+            <td>Жураев М.</td>
+            <td>67</td>
+            <td>93</td>
+            <td>74</td>
+            <td>79</td>
+            <td>7</td>
+            <td>78</td>
+            <td>78</td>
+            <td>93</td>
+            <td>67</td>
+            <td>+4</td>
+            <td>-3</td>
+            <td>4</td>
+            <td>Да</td>
+        </tr>
+        <tr>
+            <td>3</td>
+            <td>Султанов Ф.</td>
+            <td>69</td>
+            <td>87</td>
+            <td>90</td>
+            <td>80</td>
+            <td>6</td>
+            <td>81</td>
+            <td>81</td>
+            <td>90</td>
+            <td>69</td>
+            <td>+6</td>
+            <td>-1</td>
+            <td>4</td>
+            <td>Да</td>
+        </tr>
+        <tr>
+            <td>4</td>
+            <td>Усманов Ф.</td>
+            <td>78</td>
+            <td>76</td>
+            <td>89</td>
+            <td>87</td>
+            <td>5</td>
+            <td>82</td>
+            <td>82</td>
+            <td>89</td>
+            <td>76</td>
+            <td>+3</td>
+            <td>-2</td>
+            <td>5</td>
+            <td>Нет</td>
+        </tr>
+        <tr>
+            <td>5</td>
+            <td>Якишев Х.</td>
+            <td>71</td>
+            <td>94</td>
+            <td>73</td>
+            <td>78</td>
+            <td>8</td>
+            <td>79</td>
+            <td>79</td>
+            <td>94</td>
+            <td>71</td>
+            <td>+4</td>
+            <td>-3</td>
+            <td>4</td>
+            <td>Да</td>
+        </tr>
+    </table>
+
+    <table style="margin: 50px 0;">
+        <tr>
+            <th>Дата продажи</th>
+            <th>Название товара</th>
+            <th>Тип товара</th>
+            <th>Название кафе</th>
+            <th>Количество проданных товаров</th>
+            <th>Продажная цена</th>
+            <th>Чистая прибыль</th>
+        </tr>
+        <tr>
+            <td>03.01.2021</td>
+            <td>Кофе</td>
+            <td>Latte</td>
+            <td>Café de Flore</td>
+            <td>9</td>
+            <td>44.72</td>
+            <td>20.1</td>
+        </tr>
+        <tr>
+            <td>03.01.2021</td>
+            <td>Кофе</td>
+            <td>Sarpuccino</td>
+            <td>Starbucks</td>
+            <td>6</td>
+            <td>50.31</td>
+            <td>22.4</td>
+        </tr>
+        <tr>
+            <td>24.11.2021</td>
+            <td>Кофе</td>
+            <td>Mocha</td>
+            <td>Starbucks</td>
+            <td>8</td>
+            <td>37.22</td>
+            <td>18.7</td>
+        </tr>
+        <tr>
+            <td>28.11.2021</td>
+            <td>Чай</td>
+            <td>Зелёный</td>
+            <td>Safe Central</td>
+            <td>10</td>
+            <td>15.33</td>
+            <td>7.6</td>
+        </tr>
+        <tr>
+            <td>14.10.2021</td>
+            <td>Чай</td>
+            <td>Чёрный</td>
+            <td>Safe Central</td>
+            <td>12</td>
+            <td>18.92</td>
+            <td>9.2</td>
+        </tr>
+        <tr>
+            <td>20.12.2020</td>
+            <td>Кофе</td>
+            <td>Espresso</td>
+            <td>Café de Flore</td>
+            <td>7</td>
+            <td>32.45</td>
+            <td>16.3</td>
+        </tr>
+        <tr>
+            <td>02.11.2020</td>
+            <td>Чай</td>
+            <td>Мятный</td>
+            <td>Мятный</td>
+            <td>10</td>
+            <td>14.21</td>
+            <td>6.7</td>
+        </tr>
+    </table>
+    
+    <h2 style="text-align: center;">Общий объём продаж</h2>
+    <div class="chart-container">
+        <canvas id="smallPieChart" style="width: 100%; height: auto;"></canvas>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('smallPieChart').getContext('2d');
+        const smallPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Кофе', 'Чай'],
+                datasets: [{
+                    label: 'Объём продаж',
+                    data: [120, 80], // Примерные данные, замени на реальные
+                    backgroundColor: ['#FF6384', '#36A2EB']
+                }]
+            },
+            options: {
+                responsive: false, 
+                maintainAspectRatio: false
+            }
+        });
+    </script> 
+    </div>
+
+  
+
+    
+
+</body>
+</html>
